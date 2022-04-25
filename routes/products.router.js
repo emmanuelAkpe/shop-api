@@ -7,10 +7,10 @@ const {
   updateProduct,
   deleteProduct,
 } = require("../controllers/productController");
-
+const { verifyToken } = require("../middlwares/verifyToken");
 const productRouter = Router();
 
-productRouter.route("/").get(getAllProducts).post(createProduct);
+productRouter.route("/").get(verifyToken, getAllProducts).post(createProduct);
 
 productRouter
   .route("/:productId")
